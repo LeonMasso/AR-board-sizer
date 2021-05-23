@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>AR Board Sizing</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+		<script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+		<script src="node_modules/eruda/eruda.js"></script>
+		<script src="node_modules/rangeslider.js/dist/rangeslider.min.js" type="text/javascript"></script>
+		<script defer src="main.js" type="module"></script>
+
+		<link type="text/css" rel="stylesheet" href="main.css"/>
+		<link type="text/css" rel="stylesheet" href="node_modules/rangeslider.js/dist/rangeslider.css"/>
+
+	</head>
+	<body>
+		<!--Content to display while in AR mode-->
+		<div id="content">
+			<div id="sliderMenu">
+				<div class="marginTop" id="shoeContainer">
+					<div class="sliderInfo marginBottom">
+						<label class="sliderInfoEle" for="shoeSlider">Shoe size:</label>
+						<span class="sliderInfoEle sizeInd" id="shoeSizeInd"></span>
+					</div>
+				</div>
+				<div class="marginTop" id="boardContainer">
+					<div class="sliderInfo marginBottom">
+						<label class="sliderInfoEle" for="boardSlider">Board size:</label>
+						<span class="sliderInfoEle sizeInd" id="boardSizeInd"></span>
+					</div>
+				</div>
+				<div class="marginTop" id="positionContainer">
+					<div class="sliderInfo marginBottom">
+						<label class="sliderInfoEle" for="positionSlider">Foot position:</label>
+						<span class="sliderInfoEle sizeInd" id="positionInd"></span>
+					</div>
+				</div>
+			</div>
+			<button type="button" id="sliderMenuBtn"><i class="arrow down"></i></button>
+
+			<button type="button" id="placeBtn">Place Board</button>
+		</div>
+
+		<div id="container" style="position: fixed;"></div>
+	</body>
+</html>
