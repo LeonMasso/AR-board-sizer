@@ -71,7 +71,7 @@ function loadModels() {
 
     const loader = new GLTFLoader( manager )
 
-    loader.load("Models/skateBoardModel/scene.gltf", function(gltf) {  
+    loader.load("Models/skateboardModel/scene.gltf", function(gltf) {  
         boardModel = gltf.scene
         console.log("Board Model loaded!")
         group.add( boardModel )
