@@ -99,6 +99,7 @@ function loadModels() {
     loader.load("Models/air_jordan_1/scene.gltf", function(gltf) {  
         shoeModel = gltf.scene
         positionFeetOnBoard()
+
         //console.log("Shoe Model loaded!")
         group.add( shoeModel )
 
@@ -123,6 +124,7 @@ function loadModels() {
 function placeAR(){
     if ( reticle.visible ) {
         scene.add( group )
+
         //console.log( "Group added to scene!")
         current_object = group
         current_object.position.setFromMatrixPosition( reticle.matrix )
@@ -146,7 +148,6 @@ function animate() {
     //get number of times screen is refreshed (usually 60 FPS)
     //requestAnimationFrame( animate )
     renderer.setAnimationLoop( render )
-
     controls.update()
 }
 
@@ -417,9 +418,9 @@ function positionFeetOnBoard(){
 
 function getBoxDimensions(name, box){
     //console.log(`${name} Dimensions:`)
-    let xLength = (box.max.x - box.min.x).toFixed(10)
-    let yLength = (box.max.y - box.min.y).toFixed(10)
-    let zLength = (box.max.z - box.min.z).toFixed(10)
+    //let xLength = (box.max.x - box.min.x).toFixed(10)
+    //let yLength = (box.max.y - box.min.y).toFixed(10)
+    //let zLength = (box.max.z - box.min.z).toFixed(10)
     //console.log(`Length X: ${xLength}`)
     //console.log(`Length Y: ${yLength}`)
     //console.log(`Length Z: ${zLength}`)
