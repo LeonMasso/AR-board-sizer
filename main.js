@@ -345,9 +345,7 @@ $("#boardSlider").on("input change", function() {
 //Move feet on x-axis according to slider position
 $("#positionSlider").on("input change", function() {
     let curposValue = $("#positionSlider").val()
-
-    //reset shoeModel position
-    shoeModel.position.setFromMatrixPosition( boardModel.matrix )
+    
     positionFeetOnBoard()
 
     PositionShoeBox.setFromObject(shoeModel)
@@ -364,6 +362,7 @@ $("#positionSlider").on("input change", function() {
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
+        shoeModel.position.setFromMatrixPosition( boardModel.matrix )
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
