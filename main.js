@@ -371,14 +371,15 @@ $("#positionSlider").on("input change", function() {
 
     if(curposValue == 1){
         $("#positionInd").text("left")
-        shoeModel.position.setX(currentBoardMax/2)
+        //shoeModel.position.setX(currentBoardMax/2 - currentshoeMax)
+        shoeModel.position.setX(-currentBoardMax)
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.position.setX(currentBoardMin*2)
+        shoeModel.position.setX(-currentBoardMin)
     }
 
     PositionShoeBox.setFromObject(shoeModel)
@@ -387,7 +388,7 @@ $("#positionSlider").on("input change", function() {
     const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
     scene.add( helper )
     scene.add( helper2 )
-    })
+})
 
 //handle touch and move actions to rotate model with finger gestures
 renderer.domElement.addEventListener('touchstart', function(e){
