@@ -440,13 +440,6 @@ function adjustPosition(){
         $("#positionInd").text("right")
         shoeModel.position.setX( currentshoeMax - currentBoardMax )
     }
-
-    PositionShoeBox.setFromObject(shoeModel)
-    PositionBoardBox.setFromObject(boardModel)
-    const helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
-    const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
-    scene.add( helper )
-    scene.add( helper2 )
 }
 
 //***** Set three.js scene *****
