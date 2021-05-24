@@ -84,9 +84,10 @@ body {
 #sliderMenuBtn{
   display: none; /*only visible when reticle is shown*/
   margin: 0 auto;
+  padding: 15px;
   width: 100vW;
   height: 80px;
-  background-color: rgba(189, 195, 199, 0.5);
+  background-color: rgba(189, 195, 199, 0.75);
   border: none;
 }
 
@@ -95,7 +96,7 @@ body {
   margin: 0;
   padding: 15px;
   display: none;
-  background-color: rgba(189, 195, 199, 0.5);
+  background-color: rgba(189, 195, 199, 0.75);
   height: 35vH;
 }
 
