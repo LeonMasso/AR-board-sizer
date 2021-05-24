@@ -152,6 +152,7 @@ function animate() {
     //call every available frame
     renderer.setAnimationLoop( render )
     controls.update()
+    console.log("animate")
 }
 
 function render( timestamp, frame ) {
@@ -224,6 +225,7 @@ function render( timestamp, frame ) {
 
     //draw scene everytime screen is refreshed 
     renderer.render( scene, camera )
+    console.log("render")
 }
 
 
