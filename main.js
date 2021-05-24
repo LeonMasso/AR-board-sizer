@@ -435,8 +435,9 @@ function setScene(){
     // set camera with field of view in degrees, aspect ratio, clipping planes to prevent rendering for near and further away objects
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.001, 200 )
 
-    const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 )
+    const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 5 )
     light.position.set( 0.5, 1, 0.25 )
+    light.castShadow = true;
     scene.add( light )
 
     //render scene in device ratio and fill whole screen
@@ -444,6 +445,8 @@ function setScene(){
     renderer.setPixelRatio( window.devicePixelRatio )
     renderer.setSize( window.innerWidth, window.innerHeight )
     renderer.xr.enabled = true
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     container.appendChild( renderer.domElement )
 
     //TODO: Find out what this does
@@ -462,8 +465,8 @@ function setScene(){
 
     //Ring to indicate object placement
     reticle = new THREE.Mesh(
-        new THREE.RingBufferGeometry( 0.125, 0.2, 6 ).rotateX( - Math.PI / 2 ),
-        new THREE.MeshPhongMaterial({color: 'rgba(253, 203, 110,1.0)' })
+        new THREE.RingBufferGeometry( 0.1, 0.15, 32 ).rotateX( - Math.PI / 1 ),
+        new THREE.MeshPhongMaterial()
     )
     reticle.matrixAutoUpdate = false
     reticle.visible = false
