@@ -60,6 +60,8 @@ function rotateObject(){
     if(current_object && reticle.visible){
         current_object.rotation.y += deltaX / 100
     }
+    PositionShoeBox.setFromObject(shoeModel)
+    PositionBoardBox.setFromObject(boardModel)
 }
 
 function loadModels() {
@@ -82,7 +84,7 @@ function loadModels() {
         group.add( boardModel )
 
         initialBoardBox.setFromObject(boardModel)
-        getBoxDimensions("initialBoardBox", initialBoardBox)
+        //getBoxDimensions("initialBoardBox", initialBoardBox)
 
         let initialSliderVal = convertToBoardSize(middleBoard)
         let zWidthBoard = (initialBoardBox.max.z - initialBoardBox.min.z).toFixed(10)
@@ -92,7 +94,7 @@ function loadModels() {
         boardModel.scale.z = scaleFactor
         
         initialScaleBoardBox.setFromObject(boardModel)
-        getBoxDimensions("initialScaleBoardBox", initialScaleBoardBox)
+        //getBoxDimensions("initialScaleBoardBox", initialScaleBoardBox)
 
     }, undefined /*onProgress function*/, function ( error ) {
         console.error( error )
@@ -106,7 +108,7 @@ function loadModels() {
         group.add( shoeModel )
 
         initialShoeBox.setFromObject(shoeModel)
-        getBoxDimensions("initialShoeBox", initialShoeBox)
+        //getBoxDimensions("initialShoeBox", initialShoeBox)
 
         let initialSliderVal = convertToMeter(middleShoe)
         let zLengthShoe = (initialShoeBox.max.z - initialShoeBox.min.z).toFixed(10)
@@ -116,7 +118,7 @@ function loadModels() {
         shoeModel.scale.z = scaleFactor
         
         initialScaleShoeBox.setFromObject(shoeModel)
-        getBoxDimensions("initialScaleShoeBox", initialScaleShoeBox)
+        //getBoxDimensions("initialScaleShoeBox", initialScaleShoeBox)
 
     }, undefined /*onProgress function*/, function ( error ) {
         console.error( error )
@@ -366,14 +368,14 @@ $("#positionSlider").on("input change", function() {
 
     if(curposValue == 1){
         $("#positionInd").text("left")
-        shoeModel.translateX(currentBoardMin + (currentshoeMin/2))
+        shoeModel.position.setX(currentBoardMin)
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.translateX(currentBoardMax - (currentshoeMax/2))
+        shoeModel.position.setX(currentBoardMax)
     }
 
     PositionShoeBox.setFromObject(shoeModel)
