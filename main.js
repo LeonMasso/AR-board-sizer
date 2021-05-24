@@ -366,16 +366,22 @@ $("#positionSlider").on("input change", function() {
     let currentshoeMin = PositionShoeBox.min.x
     let currentshoeMax = PositionShoeBox.max.x
 
+    let boundingBox = new THREE.Box3();
+    let mesh = group.children[0];
+    boundingBox.copy( mesh.geometry.boundingBox );
+    mesh.updateMatrixWorld( true ); // ensure world matrix is up to date
+    boundingBox.applyMatrix4( mesh.matrixWorld );
+
     if(curposValue == 1){
         $("#positionInd").text("left")
-        shoeModel.position.setX(currentBoardMin)
+        shoeModel.position.setX(boundingBox.x.min)
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.position.setX(currentBoardMax)
+        shoeModel.position.setX(boundingBox.x.max)
     }
 
     PositionShoeBox.setFromObject(shoeModel)
@@ -384,7 +390,7 @@ $("#positionSlider").on("input change", function() {
     const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
     scene.add( helper )
     scene.add( helper2 )
-})
+    })
 
 //handle touch and move actions to rotate model with finger gestures
 renderer.domElement.addEventListener('touchstart', function(e){
