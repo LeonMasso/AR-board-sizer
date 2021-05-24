@@ -367,7 +367,7 @@ $("#positionSlider").on("input change", function() {
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.translateX(currentBoardMin - (currentshoeMin/2))
+        shoeModel.translateX(currentBoardMin + (currentshoeMin/2))
     }
 })
 
