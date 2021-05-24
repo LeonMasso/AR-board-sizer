@@ -328,6 +328,7 @@ $("#shoeSlider").on("input change", function() {
 
     sliderShoeBox.setFromObject(shoeModel)
     //getBoxDimensions("sliderShoeBox", sliderShoeBox)
+
     adjustPosition()
 })
 
@@ -346,6 +347,7 @@ $("#boardSlider").on("input change", function() {
 
     sliderBoardBox.setFromObject(boardModel)
     //getBoxDimensions("sliderBoardBox", sliderBoardBox)
+
     adjustPosition()
 })
 
@@ -414,7 +416,12 @@ function getBoxDimensions(name, box){
 function adjustPosition(){
     let curposValue = $("#positionSlider").val()
 
+    //reset shoeModel position
+    shoeModel.position.setFromMatrixPosition( boardModel.matrix )
     positionFeetOnBoard()
+
+    PositionShoeBox.setFromObject(shoeModel)
+    PositionBoardBox.setFromObject(boardModel)
 
     let currentBoardMin = PositionBoardBox.min.x
     let currentBoardMax = PositionBoardBox.max.x
@@ -428,12 +435,18 @@ function adjustPosition(){
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
-        shoeModel.position.setFromMatrixPosition( boardModel.matrix )
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
         shoeModel.position.setX( currentshoeMax - currentBoardMax )
     }
+
+    PositionShoeBox.setFromObject(shoeModel)
+    PositionBoardBox.setFromObject(boardModel)
+    const helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
+    const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
+    scene.add( helper )
+    scene.add( helper2 )
 }
 
 //***** Set three.js scene *****
