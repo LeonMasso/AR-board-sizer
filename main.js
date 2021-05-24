@@ -224,12 +224,6 @@ function render( timestamp, frame ) {
 
     }
 
-    PositionShoeBox.setFromObject(shoeModel)
-    PositionBoardBox.setFromObject(boardModel)
-
-    let helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
-    let helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
-
     //draw scene everytime screen is refreshed 
     renderer.render( scene, camera )
 }
@@ -331,7 +325,10 @@ $("#shoeSlider").on("input change", function() {
     shoeModel.scale.z = scaleFactor
 
     sliderShoeBox.setFromObject(shoeModel)
-    getBoxDimensions("sliderShoeBox", sliderShoeBox)
+    //getBoxDimensions("sliderShoeBox", sliderShoeBox)
+
+    PositionShoeBox.setFromObject(shoeModel)
+    PositionBoardBox.setFromObject(boardModel)
 })
 
 //Scale board on z-axis according to slider position
@@ -348,7 +345,10 @@ $("#boardSlider").on("input change", function() {
     boardModel.scale.z = scaleFactor
 
     sliderBoardBox.setFromObject(boardModel)
-    getBoxDimensions("sliderBoardBox", sliderBoardBox)
+    //getBoxDimensions("sliderBoardBox", sliderBoardBox)
+
+    PositionShoeBox.setFromObject(shoeModel)
+    PositionBoardBox.setFromObject(boardModel)
 })
 
 //Move feet on x-axis according to slider position
@@ -359,8 +359,13 @@ $("#positionSlider").on("input change", function() {
     shoeModel.position.setFromMatrixPosition( boardModel.matrix )
     positionFeetOnBoard()
 
+    PositionShoeBox.setFromObject(shoeModel)
+    PositionBoardBox.setFromObject(boardModel)
+    const helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
+    const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
     scene.add( helper )
     scene.add( helper2 )
+    
 
     let currentBoardMin = PositionBoardBox.min.x
     let currentBoardMax = PositionBoardBox.max.x
@@ -428,13 +433,13 @@ function positionFeetOnBoard(){
 }
 
 function getBoxDimensions(name, box){
-    //console.log(`${name} Dimensions:`)
-    //let xLength = (box.max.x - box.min.x).toFixed(10)
-    //let yLength = (box.max.y - box.min.y).toFixed(10)
-    //let zLength = (box.max.z - box.min.z).toFixed(10)
-    //console.log(`Length X: ${xLength}`)
-    //console.log(`Length Y: ${yLength}`)
-    //console.log(`Length Z: ${zLength}`)
+    console.log(`${name} Dimensions:`)
+    let xLength = (box.max.x - box.min.x).toFixed(10)
+    let yLength = (box.max.y - box.min.y).toFixed(10)
+    let zLength = (box.max.z - box.min.z).toFixed(10)
+    console.log(`Length X: ${xLength}`)
+    console.log(`Length Y: ${yLength}`)
+    console.log(`Length Z: ${zLength}`)
 }
 
 //***** Set three.js scene *****
