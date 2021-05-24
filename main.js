@@ -22,8 +22,8 @@ const initialScaleShoeBox = new THREE.Box3()
 const sliderShoeBox = new THREE.Box3()
 let firstShoe, middleShoe, lastShoe
 
-let PositionShoeBox = new THREE.Box3()
-let PositionBoardBox = new THREE.Box3()
+const PositionShoeBox = new THREE.Box3()
+const PositionBoardBox = new THREE.Box3()
 
 init()
 animate()
@@ -147,6 +147,8 @@ function onWindowResize() {
 function animate() {
     //get number of times screen is refreshed (usually 60 FPS)
     //requestAnimationFrame( animate )
+
+    //call every available frame
     renderer.setAnimationLoop( render )
     controls.update()
 }
@@ -445,8 +447,8 @@ function setScene(){
     container.appendChild( renderer.domElement )
 
     //TODO: Find out what this does
-    //pmremGenerator = new THREE.PMREMGenerator(renderer)
-    //pmremGenerator.compileEquirectangularShader()
+    pmremGenerator = new THREE.PMREMGenerator(renderer)
+    pmremGenerator.compileEquirectangularShader()
 
     //add controls to scene
     controls = new OrbitControls(camera, renderer.domElement)
@@ -460,8 +462,8 @@ function setScene(){
 
     //Ring to indicate object placement
     reticle = new THREE.Mesh(
-        new THREE.RingBufferGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
-        new THREE.MeshBasicMaterial()
+        new THREE.RingBufferGeometry( 0.125, 0.2, 6 ).rotateX( - Math.PI / 2 ),
+        new THREE.MeshPhongMaterial({color: 'rgba(253, 203, 110,1.0)' })
     )
     reticle.matrixAutoUpdate = false
     reticle.visible = false
