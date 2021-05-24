@@ -367,7 +367,7 @@ $("#positionSlider").on("input change", function() {
     let currentshoeMax = PositionShoeBox.max.x
 
     let boundingBox = new THREE.Box3()
-    let mesh = shoemodel
+    let mesh = shoeModel
     boundingBox.copy( mesh.geometry.boundingBox )
     mesh.updateMatrixWorld( true ); // ensure world matrix is up to date
     boundingBox.applyMatrix4( mesh.matrixWorld )
