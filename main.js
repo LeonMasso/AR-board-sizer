@@ -26,7 +26,6 @@ let PositionShoeBox = new THREE.Box3()
 let PositionBoardBox = new THREE.Box3()
 
 
-eruda.init()
 init()
 animate()
 
