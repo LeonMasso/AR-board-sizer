@@ -5,7 +5,7 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js' //Load Models in GLTF f
 
 let container
 let camera, scene, renderer
-let reticle, pmremGenerator, current_object, controls
+let reticle, current_object, controls
 let boardModel, shoeModel
 let group = new THREE.Object3D()
 let hitTestSource = null
@@ -148,9 +148,6 @@ function onWindowResize() {
 }
 
 function animate() {
-    //get number of times screen is refreshed (usually 60 FPS)
-    //requestAnimationFrame( animate )
-
     //call every available frame
     renderer.setAnimationLoop( render )
     controls.update()
@@ -458,10 +455,6 @@ function setScene(){
     renderer.setSize( window.innerWidth, window.innerHeight )
     renderer.xr.enabled = true
     container.appendChild( renderer.domElement )
-
-    //TODO: Find out what this does
-    //pmremGenerator = new THREE.PMREMGenerator(renderer)
-    //pmremGenerator.compileEquirectangularShader()
 
     //add controls to scene
     controls = new OrbitControls(camera, renderer.domElement)
