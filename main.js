@@ -22,8 +22,8 @@ const initialScaleShoeBox = new THREE.Box3()
 const sliderShoeBox = new THREE.Box3()
 let firstShoe, middleShoe, lastShoe
 
-const PositionShoeBox = new THREE.Box3()
-const PositionBoardBox = new THREE.Box3()
+let PositionShoeBox = new THREE.Box3()
+let PositionBoardBox = new THREE.Box3()
 
 init()
 animate()
@@ -435,9 +435,8 @@ function setScene(){
     // set camera with field of view in degrees, aspect ratio, clipping planes to prevent rendering for near and further away objects
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.001, 200 )
 
-    const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 5 )
+    const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 )
     light.position.set( 0.5, 1, 0.25 )
-    light.castShadow = true;
     scene.add( light )
 
     //render scene in device ratio and fill whole screen
@@ -445,13 +444,11 @@ function setScene(){
     renderer.setPixelRatio( window.devicePixelRatio )
     renderer.setSize( window.innerWidth, window.innerHeight )
     renderer.xr.enabled = true
-    renderer.shadowMap.enabled = true
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     container.appendChild( renderer.domElement )
 
     //TODO: Find out what this does
-    pmremGenerator = new THREE.PMREMGenerator(renderer)
-    pmremGenerator.compileEquirectangularShader()
+    //pmremGenerator = new THREE.PMREMGenerator(renderer)
+    //pmremGenerator.compileEquirectangularShader()
 
     //add controls to scene
     controls = new OrbitControls(camera, renderer.domElement)
@@ -465,8 +462,8 @@ function setScene(){
 
     //Ring to indicate object placement
     reticle = new THREE.Mesh(
-        new THREE.RingBufferGeometry( 0.1, 0.15, 32 ).rotateX( - Math.PI / 1 ),
-        new THREE.MeshPhongMaterial()
+        new THREE.RingBufferGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
+        new THREE.MeshBasicMaterial()
     )
     reticle.matrixAutoUpdate = false
     reticle.visible = false
