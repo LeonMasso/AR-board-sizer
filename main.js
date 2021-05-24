@@ -360,14 +360,14 @@ $("#positionSlider").on("input change", function() {
 
     if(curposValue == 1){
         $("#positionInd").text("left")
-        shoeModel.translateX((currentBoardMin/2) - currentshoeMax)
+        shoeModel.translateX((currentBoardMin/2) - (currentshoeMax*2))
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.translateX(currentBoardMax + currentshoeMin)
+        shoeModel.translateX(currentBoardMin + currentshoeMin)
     }
 })
 
