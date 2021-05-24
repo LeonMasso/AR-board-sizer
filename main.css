@@ -15,12 +15,12 @@ body {
 }
 
 .marginBottom{
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .sliderInfoEle{
   display: block;
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
 }
 
@@ -30,7 +30,7 @@ body {
 }
 
 .sizeInd{
-  color: rgba(253, 203, 110,1.0);
+  color: #3498db;
 }
 
 /*place button*/
