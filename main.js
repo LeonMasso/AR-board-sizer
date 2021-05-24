@@ -25,6 +25,12 @@ let firstShoe, middleShoe, lastShoe
 let PositionShoeBox = new THREE.Box3()
 let PositionBoardBox = new THREE.Box3()
 
+const helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
+scene.add( helper )
+const helper = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
+scene.add( helper )
+
+
 init()
 animate()
 
