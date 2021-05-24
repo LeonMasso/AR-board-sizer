@@ -357,18 +357,17 @@ $("#positionSlider").on("input change", function() {
     let currentBoardMax = PositionBoardBox.max.x
     let currentshoeMin = PositionShoeBox.min.x
     let currentshoeMax = PositionShoeBox.max.x
-    let currentshoeAll = currentshoeMax - currentshoeMin
 
     if(curposValue == 1){
         $("#positionInd").text("left")
-        shoeModel.translateX(currentBoardMax + (currentshoeMax/2))
+        shoeModel.translateX(currentBoardMax - currentshoeMin)
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.translateX(currentBoardMin + (currentshoeMin/2))
+        shoeModel.translateX(currentBoardMin + currentshoeMax)
     }
 })
 
