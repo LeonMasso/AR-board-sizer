@@ -328,9 +328,7 @@ $("#shoeSlider").on("input change", function() {
 
     sliderShoeBox.setFromObject(shoeModel)
     //getBoxDimensions("sliderShoeBox", sliderShoeBox)
-
-    PositionShoeBox.setFromObject(shoeModel)
-    PositionBoardBox.setFromObject(boardModel)
+    adjustPosition()
 })
 
 //Scale board on z-axis according to slider position
@@ -348,46 +346,12 @@ $("#boardSlider").on("input change", function() {
 
     sliderBoardBox.setFromObject(boardModel)
     //getBoxDimensions("sliderBoardBox", sliderBoardBox)
-
-    PositionShoeBox.setFromObject(shoeModel)
-    PositionBoardBox.setFromObject(boardModel)
+    adjustPosition()
 })
 
 //Move feet on x-axis according to slider position
 $("#positionSlider").on("input change", function() {
-    let curposValue = $("#positionSlider").val()
-
-    //reset shoeModel position
-    shoeModel.position.setFromMatrixPosition( boardModel.matrix )
-    positionFeetOnBoard()
-
-    PositionShoeBox.setFromObject(shoeModel)
-    PositionBoardBox.setFromObject(boardModel)
-
-    let currentBoardMin = PositionBoardBox.min.x
-    let currentBoardMax = PositionBoardBox.max.x
-    let currentshoeMin = PositionShoeBox.min.x
-    let currentshoeMax = PositionShoeBox.max.x
-
-    if(curposValue == 1){
-        $("#positionInd").text("left")
-        //shoeModel.position.setX(currentBoardMax/2 - currentshoeMax)
-        shoeModel.position.setX(-currentBoardMax + currentshoeMax)
-    }
-    else if(curposValue == 2){
-        $("#positionInd").text("center")
-    }
-    else if(curposValue == 3){
-        $("#positionInd").text("right")
-        shoeModel.position.setX(-currentBoardMin + currentshoeMin)
-    }
-
-    PositionShoeBox.setFromObject(shoeModel)
-    PositionBoardBox.setFromObject(boardModel)
-    const helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
-    const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
-    scene.add( helper )
-    scene.add( helper2 )
+    adjustPosition()
 })
 
 //handle touch and move actions to rotate model with finger gestures
@@ -445,6 +409,31 @@ function getBoxDimensions(name, box){
     console.log(`Length X: ${xLength}`)
     console.log(`Length Y: ${yLength}`)
     console.log(`Length Z: ${zLength}`)
+}
+
+function adjustPosition(){
+    let curposValue = $("#positionSlider").val()
+
+    positionFeetOnBoard()
+
+    let currentBoardMin = PositionBoardBox.min.x
+    let currentBoardMax = PositionBoardBox.max.x
+    let currentshoeMin = PositionShoeBox.min.x
+    let currentshoeMax = PositionShoeBox.max.x
+
+    if(curposValue == 1){
+        $("#positionInd").text("left")
+        //shoeModel.position.setX(currentBoardMax/2 - currentshoeMax)
+        shoeModel.position.setX( currentshoeMin - currentBoardMin )
+    }
+    else if(curposValue == 2){
+        $("#positionInd").text("center")
+        shoeModel.position.setFromMatrixPosition( boardModel.matrix )
+    }
+    else if(curposValue == 3){
+        $("#positionInd").text("right")
+        shoeModel.position.setX( currentshoeMax - currentBoardMax )
+    }
 }
 
 //***** Set three.js scene *****
