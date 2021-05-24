@@ -374,14 +374,14 @@ $("#positionSlider").on("input change", function() {
 
     if(curposValue == 1){
         $("#positionInd").text("left")
-        shoeModel.position.setX(boundingBox.x.min)
+        shoeModel.position.setX(boundingBox.min.x)
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.position.setX(boundingBox.x.max)
+        shoeModel.position.setX(boundingBox.max.x)
     }
 
     PositionShoeBox.setFromObject(shoeModel)
