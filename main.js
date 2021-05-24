@@ -25,11 +25,6 @@ let firstShoe, middleShoe, lastShoe
 let PositionShoeBox = new THREE.Box3()
 let PositionBoardBox = new THREE.Box3()
 
-const helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
-scene.add( helper )
-const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
-scene.add( helper2 )
-
 
 init()
 animate()
@@ -358,6 +353,11 @@ $("#positionSlider").on("input change", function() {
 
     PositionShoeBox.setFromObject(shoeModel)
     PositionBoardBox.setFromObject(boardModel)
+
+    const helper = new THREE.Box3Helper( PositionShoeBox, 0xff0000 )
+    scene.add( helper )
+    const helper2 = new THREE.Box3Helper( PositionBoardBox, 0x00ff00 )
+    scene.add( helper2 )
 
     let currentBoardMin = PositionBoardBox.min.x
     let currentBoardMax = PositionBoardBox.max.x
