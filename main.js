@@ -368,7 +368,7 @@ $("#positionSlider").on("input change", function() {
 
     let boundingBox = new THREE.Box3()
     let mesh = shoeModel
-    boundingBox.copy( mesh.geometry.boundingBox )
+    boundingBox.setFromObject(shoeModel)
     mesh.updateMatrixWorld( true ); // ensure world matrix is up to date
     boundingBox.applyMatrix4( mesh.matrixWorld )
 
