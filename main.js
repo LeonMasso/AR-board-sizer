@@ -361,27 +361,24 @@ $("#positionSlider").on("input change", function() {
     shoeModel.position.setFromMatrixPosition( boardModel.matrix )
     positionFeetOnBoard()
 
+    PositionShoeBox.setFromObject(shoeModel)
+    PositionBoardBox.setFromObject(boardModel)
+
     let currentBoardMin = PositionBoardBox.min.x
     let currentBoardMax = PositionBoardBox.max.x
     let currentshoeMin = PositionShoeBox.min.x
     let currentshoeMax = PositionShoeBox.max.x
 
-    let boundingBox = new THREE.Box3()
-    let mesh = shoeModel
-    boundingBox.setFromObject(shoeModel)
-    mesh.updateMatrixWorld( true ); // ensure world matrix is up to date
-    boundingBox.applyMatrix4( mesh.matrixWorld )
-
     if(curposValue == 1){
         $("#positionInd").text("left")
-        shoeModel.position.setX(boundingBox.min.x)
+        shoeModel.position.setX(currentBoardMax)
     }
     else if(curposValue == 2){
         $("#positionInd").text("center")
     }
     else if(curposValue == 3){
         $("#positionInd").text("right")
-        shoeModel.position.setX(boundingBox.max.x)
+        shoeModel.position.setX(currentBoardMax)
     }
 
     PositionShoeBox.setFromObject(shoeModel)
