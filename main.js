@@ -426,7 +426,6 @@ function adjustPosition(){
 
     if(curposValue == 1){
         $("#positionInd").text("left")
-        //shoeModel.position.setX(currentBoardMax/2 - currentshoeMax)
         shoeModel.position.setX( currentshoeMin - currentBoardMin )
     }
     else if(curposValue == 2){
